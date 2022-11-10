@@ -1,14 +1,20 @@
 package dto;
 
-public class User {
+import org.springframework.security.core.GrantedAuthority;
+
+public class User implements GrantedAuthority {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String email;
 	private String password;
 	private String name;
 	private int tel;
 	private String address;
 	private int point;
-	private boolean role;
+	private String authority;
 	
 	public String getEmail() {
 		return email;
@@ -46,10 +52,12 @@ public class User {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	public boolean isRole() {
-		return role;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
-	public void setRole(boolean role) {
-		this.role = role;
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
+		return authority;
 	}
 }
