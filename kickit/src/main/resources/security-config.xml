@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+	
+	<!-- 
+	시큐리티 3단계 : 로그인을 JDBC연동으로 커스터마이징 하기
+		data-source-ref : 데이터베이스 연결을 나타내는
+			datasource로 해당 빈은 반드시 root-context에서
+			기술해야 한다.
+		role-prefix : "ROLE_"와 같은 권한명 앞에 붙는 접두어를
+			지정한다. 만약 해당 항목을 "ROLE_"로 지정하면 테이블에서는
+			"USER"와 같이 입력해야 한다.
+		users-by-username-query : 아이디를 이용하여 사용자 정보를
+			가져오는 쿼리문을 작성한다.
+		authorities-by-username-query : 아이디를 이용하여
+			권한정보를 가져오는 쿼리문을 작성한다.
+	 -->
+
+	<http auto-config = "true">
+		<!-- 로그인 페이지는 권한을 얻은후 접근하는것이 아니라
+		권한이 없는 사용자가 권한을 얻기위해 접근하므로, 모든 사용자가 접근할수
+		있도록 설정해야 한다. -->
+
+		<intercept-url pattern="/resources/**" access="permitAll"/>
+		<intercept-url pattern="/user/login" access="permitAll"/>
+		<!-- 해당 경로는 ADMIN 권한을 얻은 후 접근할 수 있다. -->
+		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
+		<!-- USER, ADMIN 권한중 하나의 권한만 있으면 접근할수 있다. -->
+		<intercept-url pattern="/user" access="hasAnyRole('USER, ADMIN')"/>
+		<intercept-url pattern="/**" access="permitAll"/>
+		
+		<form-login
+			login-page="/user/login"
+			default-target-url="/"
+			authentication-failure-url="/user/login"
+			login-processing-url="/login"
+			username-parameter="email"
+			password-parameter="password"
+			/>
+			
+			<logout
+				logout-url="/user/logout"
+				logout-success-url="/user/main"/>
+			<access-denied-handler
+				error-page="/admin/accessDenied"/>
+	</http>
+	<!-- 각 권한을 획득하기 위한 설정부분 -->
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service 
+				data-source-ref="dataSource"
+				role-prefix="ROLE_"
+				users-by-username-query="SELECT email, password, enabled​ FROM User WHERE email=?"
+				authorities-by-username-query="SELECT email, authority FROM User WHERE email=?"/>
+		</authentication-provider>
+	</authentication-manager>
+	
+</beans:beans>
