@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -33,7 +34,7 @@
 						type:"get",
 						headers: {"cache-control":"no-cache", "pragma": "no-cache"},
 						data : {
-			                "category":category,    // ¹öÆ°ÀÇ value°ª¿¡ µû¶ó ÀÛµ¿ÇÕ´Ï´Ù.
+			                "category":category,    // ë²„íŠ¼ì˜ valueê°’ì— ë”°ë¼ ìž‘ë™í•©ë‹ˆë‹¤.
 			                "order":order
 			            },
 			            success : function(data){
@@ -66,6 +67,10 @@
 		</script>
 	</head>
 	<body>
+			<h1>ë‚˜ëŠ” ë©”ì¸</h1>
+			<c:if test="${not empty user_id }">
+				<p>${user_id }ë‹˜ , í•˜ì´ë£½~!</p>
+			</c:if>	
 	        <!-- Navigation-->
 	        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	            <div class="container px-4 px-lg-5">
@@ -88,11 +93,8 @@
 	                    <form class="d-flex">
 	                    	<ul class="user-area_menu">
 	                    		<li>
-		                    		<a href="http://localhost:8090/kickit/users/login">·Î±×ÀÎ</a>
+		                    		<a href="http://localhost:8090/kickit/user/login">ë¡œê·¸ì¸</a>
 		                    	</li>
-		                    	<li>
-		                    		<a href="http://localhost:8090/kickit/users/signup">È¸¿ø°¡ÀÔ</a>
-	                    		</li>
 	                    	</ul>
 	                        <button class="btn btn-outline-dark" type="submit">
 	                            <i class="bi-cart-fill me-1"></i>
@@ -115,27 +117,27 @@
 	        <!-- Section-->
 	        <section class="py-5">
 	        	<div class="form-inline">
-					<input type="button" name="button" value="ÀüÃ¼" class="btn btn btn-primary btn-bg"/>
-	                <input type="button" name="button" value="ÇÑ½Ä" class="btn btn btn-primary btn-bg"/>
-	                <input type="button" name="button" value="Áß½Ä-ÀÏ½Ä" class="btn btn btn-primary btn-bg"/>
-	                <input type="button" name="button" value="º£Æ®³²½Ä" class="btn btn btn-primary btn-bg"/>
-	                <input type="button" name="button" value="¾ç½Ä" class="btn btn btn-primary btn-bg"/>
-	                <input type="button" name="button" value="°Ç°­ÇÑ ½Ä»ç" class="btn btn btn-primary btn-bg"/>
-	                <input type="button" name="button" value="±âÅ¸" class="btn btn btn-primary btn-bg"/>
+					<input type="button" name="button" value="ì „ì²´" class="btn btn btn-primary btn-bg"/>
+	                <input type="button" name="button" value="í•œì‹" class="btn btn btn-primary btn-bg"/>
+	                <input type="button" name="button" value="ì¤‘ì‹-ì¼ì‹" class="btn btn btn-primary btn-bg"/>
+	                <input type="button" name="button" value="ë² íŠ¸ë‚¨ì‹" class="btn btn btn-primary btn-bg"/>
+	                <input type="button" name="button" value="ì–‘ì‹" class="btn btn btn-primary btn-bg"/>
+	                <input type="button" name="button" value="ê±´ê°•í•œ ì‹ì‚¬" class="btn btn btn-primary btn-bg"/>
+	                <input type="button" name="button" value="ê¸°íƒ€" class="btn btn btn-primary btn-bg"/>
 	            </div>
 	            <div class="form-inline">
 	            	<input type="text" name="keyword" value="">
-	                <input type="button" id="searchButton" value="°Ë»ö" class="btn btn btn-outline-primary mr-2"/>
+	                <input type="button" id="searchButton" value="ê²€ìƒ‰" class="btn btn btn-outline-primary mr-2"/>
 	            </div>
 	            
 	            <div class="container px-4 px-lg-5 mt-5">
 		            <select name="order" >
-						    <option value="none">=== ¼±ÅÃ ===</option>
-						    <option value="star desc">º°Á¡ ±¸¸Å¼ø</option>
-						    <option value="buy desc">ÃÖ´Ù ±¸¸Å¼ø</option>
-						    <option value="rvCount desc">¸®ºä ¸¹Àº ¼ø</option>
-						    <option value="price">°¡°ÝÀÌ ³·Àº¼ø</option>
-						    <option value="price desc">°¡°ÝÀÌ ³ôÀº¼ø</option>
+						    <option value="none">=== ì„ íƒ ===</option>
+						    <option value="star desc">ë³„ì  êµ¬ë§¤ìˆœ</option>
+						    <option value="buy desc">ìµœë‹¤ êµ¬ë§¤ìˆœ</option>
+						    <option value="rvCount desc">ë¦¬ë·° ë§Žì€ ìˆœ</option>
+						    <option value="price">ê°€ê²©ì´ ë‚®ì€ìˆœ</option>
+						    <option value="price desc">ê°€ê²©ì´ ë†’ì€ìˆœ</option>
 					</select>
 	                <div id = "board" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 	                    <c:forEach var="item" items="${items}">
@@ -156,12 +158,12 @@
 		                                        <div class="bi-star-fill"></div>
 		                                        <div class="bi-star-fill"></div>
 	                                   		</div>
-		                                    <p><c:out value="${item.price}"/>¿ø</p>
+		                                    <p><c:out value="${item.price}"/>ì›</p>
 		                                </div>
 		                            </div>
 		                            <!-- Product actions-->
 		                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-		                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="http://localhost:8090/kickit/content/info?item=${item.itemCode}">´õº¸±â</a></div>
+		                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="http://localhost:8090/kickit/content/info?item=${item.itemCode}">ë”ë³´ê¸°</a></div>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -179,6 +181,4 @@
 	        <!-- Core theme JS-->
 	        <script src="${path}/resources//js/mainScripts.js"></script>
 	</body>
-	
-
 </html>

@@ -11,12 +11,12 @@ import dto.User;
 @Repository
 public interface UserMapper {
 
-	@Insert("insert into User "
+   @Insert("insert into User "
      + " (email, password,name,tel,address,authority)"
 + " values(#{email}, #{password},#{name},#{tel},#{address},#{authority})")
-	void insert(User user);
+   void insert(User user);
  
-	@Select("select * from User where email=#{email}")
-	User selectOne(Map<String, Object> param);
+   @Select("select * from User where email=#{email}")
+   User selectOne(Map<String, Object> param);
 
 }

@@ -1,8 +1,8 @@
 package dto;
 
-import java.util.Arrays;
 
 public class Item {
+
 	private int itemCode;
 	private String item;
 	private int price;
@@ -14,19 +14,6 @@ public class Item {
 	private int buy;
 	private float star;
 	private int rvCount;
-	
-	public String getFile_name() {
-		return file_name;
-	}
-	public void setFile_name(String file_name) {
-		this.file_name = file_name;
-	}
-	public int getRvCount() {
-		return rvCount;
-	}
-	public void setRvCount(int rvCount) {
-		this.rvCount = rvCount;
-	}
 	public int getItemCode() {
 		return itemCode;
 	}
@@ -50,6 +37,12 @@ public class Item {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -81,12 +74,17 @@ public class Item {
 	public void setStar(float star) {
 		this.star = star;
 	}
+	public int getRvCount() {
+		return rvCount;
+	}
+	public void setRvCount(int rvCount) {
+		this.rvCount = rvCount;
+	}
 	@Override
 	public String toString() {
 		return "Item [itemCode=" + itemCode + ", item=" + item + ", price=" + price + ", content=" + content
 				+ ", file_name=" + file_name + ", quantity=" + quantity + ", category=" + category + ", recommend="
 				+ recommend + ", buy=" + buy + ", star=" + star + ", rvCount=" + rvCount + "]";
 	}
-
 	
 }
