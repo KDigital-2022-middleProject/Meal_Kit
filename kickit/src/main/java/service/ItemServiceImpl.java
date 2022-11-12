@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.ItemDao;
+import dto.Cart;
 import dto.Item;
 import dto.Review;
 
@@ -55,9 +56,9 @@ public class ItemServiceImpl implements ItemService{
 		return itemDao.getReview(item);
 	}
 
-//	public void setCart(Cart cart) {
-//		// TODO Auto-generated method stub
-//		itemDao.setCart(cart);
-//	}
+	public void setCart(Cart cart) {
+		// TODO Auto-generated method stub
+	itemDao.setCart(cart);
+	}
 
 }

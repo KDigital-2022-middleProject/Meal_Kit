@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import dao.mapper.ItemMapper;
 
 import dao.mapper.UserMapper;
+import dto.Cart;
 import dto.Item;
 import dto.Review;
 import dto.User;
@@ -71,9 +72,9 @@ public class ItemDaoImpl implements ItemDao{
 		return template.getMapper(ItemMapper.class).getReview(param);
 	}
 
-//	@Override
-//	public void setCart(Cart cart) {
-//		// TODO Auto-generated method stub
-//		template.getMapper(ItemMapper.class).setCart(cart);
-//	}
+	@Override
+	public void setCart(Cart cart) {
+		// TODO Auto-generated method stub
+		template.getMapper(ItemMapper.class).setCart(cart);
+	}
 }

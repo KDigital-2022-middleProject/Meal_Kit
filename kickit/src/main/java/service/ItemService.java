@@ -13,5 +13,5 @@ public interface ItemService {
 	public List<Item> getItemByKeyword(String keyword);
 	public Item getItem(Integer item);
 	public List<Review> getReview(Integer item);
-//	public void setCart(Cart cart);
+	public void setCart(Cart cart);
 }
